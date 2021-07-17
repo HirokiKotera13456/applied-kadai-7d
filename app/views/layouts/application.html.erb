@@ -10,26 +10,28 @@
   </head>
 
   <body>
-   <body>
+   <% flash.each do |message_type, message| %>
+      <%= message %>
+    <% end %>
     <h1>Bookers</h1>
     <% if user_signed_in? %>
-      <li>
-      Home
+        <li>
+        <%= link_to 'Home', user_path(current_user.id) %>
       </li>
       <li>
-      Users
+        Users
       <li>
-      <%= link_to "Books", books_path %>
+        <%= link_to "Books", books_path %>
       </li>
       <li>
         <%= link_to "Logout", destroy_user_session_path, method: :delete %>
       </li>
     <% else %>
       <li>
-      Home
+        <%= link_to "Home", root_path %>
       </li>
       <li>
-      about
+        <%= link_to "about", home_about_path %>
       </li>
       <li>
         <%= link_to "Sign up", new_user_registration_path %>

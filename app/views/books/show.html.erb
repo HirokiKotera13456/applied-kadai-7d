@@ -1,14 +1,29 @@
+<h1>New Book</h1>
+<%= form_with model: @book, local:true do |f| %>
+  <% if @book.errors.any? %>
+  <%= @book.errors.count %>件のエラーが発生しました
+  <% @book.errors.full_messages.each do |message| %>
+    <%= message %>
+   <% end %>
+  <% end %>
+  <h4>Title</h4>
+  <%= f.text_field :title %>
+  <h4>Opinion</h4>
+  <%= f.text_area :body %>
+  <%= f.submit 'Create Book' %>
+<% end %>
+
 <h1> Book detail </h1> 
 <div class="book">
   <p>title：<%= @book.title %></p>
   <p>opinion：<%= @book.body %></p>
-  
 </div>
-
-  
-  
   
   
   <% if @book.user == current_user %>
-    <%= link_to "削除", book_path(@book), method: :delete %>
-  <% end %></div>
+    <%= link_to "destroy", book_path(@book), method: :delete ,data: {confirm: "本当に消しますか？"} %>
+  <% end %>
+  
+   <% if @book.user == current_user %>
+    <%= link_to "edit", edit_book_path(@book) %>
+  <% end %>
