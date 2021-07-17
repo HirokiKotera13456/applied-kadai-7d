@@ -2,6 +2,9 @@
 <%= attachment_image_tag(@book.user, :profile_image, :fill, 50, 50, fallback: "no_image.jpg") %>
 <h3><%= @book.user.name %></h3>
 <h3><%= @book.user.introduction %></h3>
+<% if @user.id == current_user.id %>
+    <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+  <% end %>
 
 
 <h1>New Book</h1>
