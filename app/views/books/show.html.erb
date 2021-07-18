@@ -1,17 +1,5 @@
-<h1>New Book</h1>
-<%= form_with model: @book, local:true do |f| %>
-  <% if @book.errors.any? %>
-  <%= @book.errors.count %>件のエラーが発生しました
-  <% @book.errors.full_messages.each do |message| %>
-    <%= message %>
-   <% end %>
-  <% end %>
-  <h4>Title</h4>
-  <%= f.text_field :title %>
-  <h4>Opinion</h4>
-  <%= f.text_area :body %>
-  <%= f.submit 'Create Book' %>
-<% end %>
+<%= render 'users/info', user: @user %>
+<%= render "books/form", book: @book %>
 
 <h1> Book detail </h1> 
 <div class="book">
