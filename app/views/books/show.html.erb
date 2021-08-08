@@ -19,17 +19,7 @@
               <%= link_to @book.title, user_path(@book.user) %>
             </td>
             <td><%= @book.body %></td>
-            <td>
-               <% if @book.favorited_by?(current_user) %>
-                  <%= link_to book_favorites_path(@book), method: :delete do %>
-                    ♥<%= @book.favorites.count %> いいね
-                  <% end %>
-                <% else %>
-                  <%= link_to book_favorites_path(@book), method: :post do %>
-                    ♡<%= @book.favorites.count %> いいね
-                  <% end %>
-              <% end %>
-            </td>
+            <td><%= render "books/favorite", book: @book  %></td>
             <% if @book.user == current_user %>
               <td>
                 <%= link_to "Edit", edit_book_path(@book), class:"btn btn-sm btn-success" %>
