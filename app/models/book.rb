@@ -1,5 +1,5 @@
 class Book < ApplicationRecord
-  
+
   belongs_to :user
   has_many :book_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
@@ -7,10 +7,10 @@ class Book < ApplicationRecord
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?
   end
-  
+  validates :image_id, presence: { message: '画像を投稿してください' }
   validates :title, presence: true
   validates :body, presence: true,length: { maximum: 200 }
-  
+
   def self.search(word, search)
     if search == "perfect_match"
       Book.where("title LIKE?", "#{word}")
@@ -24,6 +24,6 @@ class Book < ApplicationRecord
       Book.all
     end
   end
-  
-  
+
+
 end
